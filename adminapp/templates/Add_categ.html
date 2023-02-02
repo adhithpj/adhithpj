@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Category Details</h4>
+<!--                  <p class="card-description">-->
+<!--                    Horizontal form layout-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'save_categ' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                       <div class="form-group row">
+                         <label for="exampleInputUsername1" class="col-sm-3 col-form-label">Category</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name" id="exampleInputUsername1" placeholder="Enter the Category Name">
+                          </div>
+                       </div>
+
+                       <div class="form-group row">
+                         <label for="exampleInputUsername1" class="col-sm-3 col-form-label">Description</label>
+                          <div class="col-sm-9">
+                            <textarea class="form-control" name="desc" id="exampleTextarea1" placeholder="Enter a small description" rows="4"></textarea>
+                          </div>
+                       </div>
+
+                      <div class="form-group row">
+                        <label for="exampleInputFile" class="col-sm-3 col-form-label">Category Image</label>
+                          <div class="col-sm-9">
+                              <input type="file" name="img" class="form-control file-upload-info" id="exampleInputFile"  placeholder="Upload Image">
+                          </div>
+                      </div>
+
+<!--                    <div class="form-check form-check-flat form-check-primary">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="checkbox" class="form-check-input">-->
+<!--                        Remember me-->
+<!--                      <i class="input-helper"></i></label>-->
+<!--                    </div>-->
+                    <button type="submit" class="btn btn-gradient-primary mr-2" onclick="alert('Category added Successfully')">Submit</button>
+<!--                    <button class="btn btn-light">Cancel</button>-->
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Category List</h5>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Image</th>
+                      <th>Description</th>
+                       <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                  </thead>
+                     {% for i in data %}
+                        <tr>
+                            <td>{{ i.Name }}</td>
+                            <td>
+                                <img src="{{ i.Image.url }}" width="50" height="35">
+                            </td>
+                            <td>{{ i.Description }}</td>
+                            <td>
+                                <form method="post" action="{% url 'edit_categ' dataid=i.id %}">
+                                    {% csrf_token %}
+                                  <button type="submit" class="btn btn-gradient-primary mr-2 px-2"> Edit</button>
+                                </form>
+                            </td>
+
+                             <td>
+                                <form method="post" action="{% url 'delete_categ' dataid=i.id %}">
+                                    {% csrf_token %}
+                                  <button type="submit" class="btn btn-gradient-primary mr-2 px-3">Delete</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+
+                </table>
+              </div>
+            </div>
+          </div>
+
+</body>
+
+</html>
+{% endblock %}

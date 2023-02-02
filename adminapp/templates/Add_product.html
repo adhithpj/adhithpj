@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Product Details</h4>
+                  <form class="forms-sample" method="post" action="{% url 'save_prod' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+
+                      <div class="form-group row">
+                         <label class="col-sm-3 col-form-label">Select Category</label>
+                          <div class="col-sm-9">
+                              <select name="categ" class="form-control">
+                                  <option>Please Select---</option>
+                                  {% for d in data %}
+                                    <option> {{ d.Name }} </option>
+                                  {% endfor %}
+                              </select>
+                          </div>
+                       </div>
+
+                       <div class="form-group row">
+                         <label for="exampleInputProduct" class="col-sm-3 col-form-label">Product</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name" id="exampleInputProduct" placeholder="Enter the name of Product">
+                          </div>
+                       </div>
+
+                      <div class="form-group row">
+                         <label for="exampleInputProduct1" class="col-sm-3 col-form-label">Price</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="price" id="exampleInputProduct1" placeholder="Enter the price per pcs">
+                          </div>
+                       </div>
+
+                      <div class="form-group row">
+                         <label for="exampleInputProduct2" class="col-sm-3 col-form-label">Models </label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="models" id="exampleInputProduct2" placeholder="Enter the model name">
+                          </div>
+                       </div>
+
+                       <div class="form-group row">
+                         <label for="exampleTextarea1" class="col-sm-3 col-form-label">Specification</label>
+                          <div class="col-sm-9">
+                            <textarea class="form-control" name="spec" id="exampleTextarea1" placeholder="Enter a small specification about Product" rows="4"></textarea>
+                          </div>
+                       </div>
+
+                      <div class="form-group row">
+                        <label for="exampleInputFile" class="col-sm-3 col-form-label">Product Image</label>
+                          <div class="col-sm-9">
+                              <input type="file" name="img" class="form-control file-upload-info" id="exampleInputFile"  placeholder="Upload Image">
+                          </div>
+                      </div>
+
+                    <button type="submit" class="btn btn-gradient-primary mr-2" onclick="alert('Product added Successfully')">Add</button>
+<!--                    <button class="btn btn-light">Cancel</button>-->
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+
+</body>
+</html>
+{% endblock %}

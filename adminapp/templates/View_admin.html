@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Admins List</h5>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Mobile</th>
+                      <th>Email ID</th>
+                      <th>Username</th>
+                      <th>Image</th>
+                       <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                  </thead>
+                     {% for i in data %}
+                        <tr>
+                            <td>{{ i.Name }}</td>
+                            <td>{{ i.Mobile }}</td>
+                            <td>{{ i.Email }}</td>
+                            <td>{{ i.Username }}</td>
+                            <td>
+                                <img src="{{ i.Image.url }}" width="50" height="35">
+                            </td>
+                            <td>
+                                <form method="post" action="{% url 'edt_adm' dataid=i.id %}">
+                                    {% csrf_token %}
+                                  <button type="submit" class="btn btn-gradient-primary mr-2 px-2"> Edit</button>
+                                </form>
+                            </td>
+
+                             <td>
+                                <form method="post" action="{% url 'del_adm' dataid=i.id %}">
+                                    {% csrf_token %}
+                                  <button type="submit" class="btn btn-gradient-primary mr-2 px-3">Delete</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+
+                </table>
+              </div>
+            </div>
+          </div>
+
+</body>
+
+</html>
+{% endblock %}
